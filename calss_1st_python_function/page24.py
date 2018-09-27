@@ -1,0 +1,7 @@
+print(4+3)
+print(4-3)
+print(4*3)
+print(4/3)
+print(4.0/3)
+print(int(4)/3)
+print(int(4/3))
