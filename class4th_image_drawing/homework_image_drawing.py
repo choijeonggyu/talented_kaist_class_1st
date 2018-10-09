@@ -1,153 +1,103 @@
 import turtle
 import time
 
+turtle.title("FloorTiles & Cat's Foot Prints")
+turtle.setup(500, 500, 0, 0)
 
+# 배경은 파랑
+turtle.bgcolor("blue")
 
-def backFill(b, c, x, y, l, h):
-    b.penup()
-    b.setpos(x, y)
-    b.color(c)
-    b.pendown()
-    b.begin_fill()
-    for side in range(2):
-        b.forward(l)
-        b.left(90)
-        b.forward(h)
-        b.left(90)
-    b.end_fill()
-
-def drawCloud(c, x, y):
-    c.penup()
-    c.setpos(x, y)
-    c.pendown()
-    c.color("grey")
-    c.begin_fill()
-    for side in range(5):
-        c.circle(10)
-        c.left(80)
-    c.end_fill()
-
-def main():
-    print("Cars")
-    joe = turtle.Turtle()
-    joe.speed(0)
-
-    backFill(joe,"green",-200,-100,400,25)
-    backFill(joe,"black",-200,-75,400,75)
-    backFill(joe,"green",-200,0,400,25)
-    backFill(joe,"sky blue",-200,25,400,110)
-
-    x=-192.5
-    for side in range(10):
-     backFill(joe,"yellow",x,-40,25,5)
-     x=x+40
-
-    x=-180
-    y=100
-    for side in range(15):
-     drawCloud(joe,x,y)
-     x=x+40
-     y=y-10
-
-main()
-
-turtle.title("gradient")
-turtle.setup(500,500,0,0)
-
-xpos = 0
-ypos = 0
-
-blue = 1.0
-red = 1.0
-green = 1.0
-
-
-size = 200
-
-turtle.hideturtle()
-turtle.bgcolor(0.5,0.5,0.5)
-
+# 거북이를 바닥의 맨 왼쪽으로 위치
 turtle.up()
 turtle.right(90)
-turtle.forward(150)
+turtle.forward(250)
 turtle.right(90)
 turtle.forward(250)
 turtle.right(180)
-
 turtle.down()
 
-# 바다 그리기
-turtle.pencolor(0, 0, blue)
-turtle.fillcolor(0, 0, blue)
-turtle.begin_fill()
+turtle.speed(0)
 
-turtle.forward(500)
-turtle.right(90)
-turtle.forward(100)
-turtle.right(90)
-turtle.forward(500)
-turtle.end_fill()
+# 바닥타일
+for i in range(10):
+    for j in range(10):
 
-turtle.up()
+        if (i + j) % 2 == 1:
+            turtle.pencolor("grey")
+            turtle.fillcolor("grey")
+        else:
+            turtle.pencolor("black")
+            turtle.fillcolor("black")
 
-# 구름 그리기
-turtle.right(90)
-turtle.forward(250)
-turtle.right(90)
-turtle.down()
+        turtle.begin_fill()
+        # 타일 하나 그리기
+        for k in range(4):
+            turtle.forward(50)
+            turtle.left(90)
+        turtle.end_fill()
+        turtle.forward(50)
+    turtle.left(180)
+    turtle.forward(500)
+    turtle.right(90)
+    turtle.forward(50)
+    turtle.right(90)
 
-#기반 구릅
-turtle.pencolor(0.4, 0.4, 0.4)
-turtle.fillcolor(0.4, 0.4, 0.4)
-turtle.begin_fill()
+# 고양이 발바닥
+x = -40
+y = -230
+for i in range(10):
+    turtle.penup()
+    turtle.setpos(x, y)
+    turtle.pendown()
+    turtle.color("white")
 
-turtle.forward(500)
-turtle.left(90)
-turtle.forward(10)
-turtle.left(90)
-turtle.forward(500)
-turtle.end_fill()
-
-# 짙은 구름
-turtle.pencolor(0.45, 0.45, 0.45)
-turtle.fillcolor(0.45, 0.45, 0.45)
-turtle.begin_fill()
-
-turtle.right(160)
-turtle.forward(250)
-turtle.right(110)
-turtle.forward(90)
-turtle.right(90)
-turtle.forward(210)
-turtle.end_fill()
-
-# 용오름
-
-
-
-
-
-
-
-
-"""
-for x in range(10):
-    turtle.pencolor(0,0,blue)
-    turtle.fillcolor(0,0,blue)
+    # 큰발바닥
     turtle.begin_fill()
-    for y in range(4):
-        turtle.forward(size)
-        turtle.right(90)
+    turtle.circle(15)
     turtle.end_fill()
 
-    xpos +=10
-    ypos -=10
-    blue -=0.1
-    size -=20
-
+    # 1th 발가락
     turtle.penup()
-    turtle.goto(xpos,ypos)
+    x -= 15
+    y += 30
+    turtle.setpos(x, y)
     turtle.pendown()
-"""
-time.sleep(10)
+    turtle.begin_fill()
+    turtle.circle(6)
+    turtle.end_fill()
+    # 2nd 발가락
+    turtle.penup()
+    x += 10
+    y += 4
+    turtle.setpos(x, y)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(6)
+    turtle.end_fill()
+    # 3rd 발가락
+    turtle.penup()
+    x += 10
+    y += 0
+    turtle.setpos(x, y)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(6)
+    turtle.end_fill()
+    # 4th 발가락
+    turtle.penup()
+    x += 10
+    y -= 4
+    turtle.setpos(x, y)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(6)
+    turtle.end_fill()
 
+    # 발자국은 지그재그로
+    if i % 2 == 1:
+        x += 80
+    else:
+        x -= 80
+    y += 70
+
+time.sleep(30)
